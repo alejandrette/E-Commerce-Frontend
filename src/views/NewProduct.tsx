@@ -1,19 +1,20 @@
-import { ActionFunctionArgs, Form, Link, useActionData } from "react-router-dom";
+import { ActionFunctionArgs, Form, Link, redirect, useActionData } from "react-router-dom";
 import { ErrorMessage } from "../components/ErrorMessage";
+import { addProduct } from "../services/ProductService";
 
-export async function action({request}: ActionFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData())
-  console.log(data);
-  
+
   let error = ''
-  if(Object.values(data).includes('')){
-    error = 'The field is Empty'
+  if (Object.values(data).includes("")) {
+    error = "The field is Empty"
   }
-  if(error.length){
+  if (error.length) {
     return error
   }
 
-  return {}
+  await addProduct(data)
+  return redirect('/')
 }
 
 export function NewProduct() {
