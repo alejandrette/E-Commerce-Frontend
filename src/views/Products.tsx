@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { getProducts } from "../services/ProductService";
+import { Product } from "../types";
+
+export async function loader() {
+  const products = await getProducts()
+
+  return products
+}
 
 export function Products() {
+  const products = useLoaderData<Product[]>()
+
   return (
     <div className="flex flex-wrap justify-between bg-gray-800 p-4 rounded shadow-lg shadow-indigo-600/50">
       <div>
