@@ -29,11 +29,11 @@ export function Products() {
         <table className="w-full mt-5 table-auto">
           <thead className="bg-slate-800 text-white">
               <tr>
-                  <th className="p-2">ID</th>
-                  <th className="p-2">Product</th>
-                  <th className="p-2">Price</th>
-                  <th className="p-2">Availability</th>
-                  <th className="p-2">Actions</th>
+                <th className="p-3 text-left">ID</th>
+                <th className="p-3 text-left">Product</th>
+                <th className="p-3 text-left">Price</th>
+                <th className="p-3 text-left">Availability</th>
+                <th className="p-3 text-left">Actions</th>
               </tr>
           </thead>
           <tbody>
