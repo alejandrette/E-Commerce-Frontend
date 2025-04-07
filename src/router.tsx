@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./layout/Layout";
 import { Products } from "./views/Products";
-import { NewProduct, action as newProductAction } from "./views/NewProduct";
-import { loader as productsLoader } from "./views/Products";
-import { EditProduct, loader as getProductByIdLoader, action as editProduct } from "./views/EditPorduct";
-import { deleteAction, toggleAvailabilityAction } from "./components/ProductDetails";
+import { NewProduct } from "./views/NewProduct";
+import { action as newProductAction } from "./logic/newProductAction";
+import { loader as productsLoader } from "./logic/ProductsActions";
+import { EditProduct } from "./views/EditPorduct";
+import { loader as getProductByIdLoader, action as editProduct } from "./logic/EditProductActions";
+import { deleteAction, toggleAvailabilityAction } from "./logic/ProductDetailsActions";
 
 export const router = createBrowserRouter([
   {

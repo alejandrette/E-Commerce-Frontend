@@ -1,21 +1,5 @@
-import { ActionFunctionArgs, Form, Link, redirect, useActionData } from "react-router-dom";
+import { Form, Link, useActionData } from "react-router-dom";
 import { ErrorMessage } from "../components/ErrorMessage";
-import { addProduct } from "../services/ProductService";
-
-export async function action({ request }: ActionFunctionArgs) {
-  const data = Object.fromEntries(await request.formData())
-
-  let error = ''
-  if (Object.values(data).includes("")) {
-    error = "The field is Empty"
-  }
-  if (error.length) {
-    return error
-  }
-
-  await addProduct(data)
-  return redirect('/')
-}
 
 export function NewProduct() {
   const error = useActionData() as string
@@ -40,26 +24,26 @@ export function NewProduct() {
 
         <div className="mb-4">
             <label
-              className="text-gray-800"
+              className="text-gray-50"
               htmlFor="name"
             >Name Product:</label>
             <input 
               id="name"
               type="text"
-              className="mt-2 block w-full p-3 bg-gray-50"
+              className="mt-2 block w-full p-3 bg-gray-50 text-gray-800"
               placeholder="Name Product"
               name="name"
             />
         </div>
         <div className="mb-4">
             <label
-              className="text-gray-800"
+              className="text-gray-50"
               htmlFor="price"
             >Price:</label>
             <input 
               id="price"
               type="number"
-              className="mt-2 block w-full p-3 bg-gray-50"
+              className="mt-2 block w-full p-3 bg-gray-50 text-gray-800"
               placeholder="Precio Producto. ej. 200, 300"
               name="price"
             />

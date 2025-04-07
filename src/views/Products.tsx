@@ -1,13 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { getProducts } from "../services/ProductService";
 import { Product } from "../types";
 import { ProductDetails } from "../components/ProductDetails";
-
-export async function loader() {
-  const products = await getProducts()
-
-  return products
-}
 
 export function Products() {
   const products = useLoaderData<Product[]>()

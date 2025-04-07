@@ -1,25 +1,10 @@
 import { Product } from "../types"
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { Form, Link, LoaderFunctionArgs, redirect } from "react-router-dom";
-import { deleteProduct, updateAvailability } from "../services/ProductService";
+import { Form, Link } from "react-router-dom";
 
 type ProductDetailsProps= {
   product: Product
-}
-
-export async function deleteAction({ params }: LoaderFunctionArgs) {
-  if (params.id !== undefined) {
-    await deleteProduct(+params.id)
-    return redirect('/')
-  }
-}
-
-export async function toggleAvailabilityAction({ params }: LoaderFunctionArgs) {
-  if (params.id !== undefined) {
-    await updateAvailability(+params.id)    
-    return redirect('/')
-  }
 }
 
 export function ProductDetails({ product }: ProductDetailsProps) {
