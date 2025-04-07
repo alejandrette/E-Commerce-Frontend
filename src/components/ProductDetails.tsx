@@ -1,11 +1,18 @@
 import { Product } from "../types"
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import { updateAvailability } from "../services/ProductService";
+import { Form, Link, LoaderFunctionArgs, redirect } from "react-router-dom";
+import { deleteProduct, updateAvailability } from "../services/ProductService";
 
 type ProductDetailsProps= {
   product: Product
+}
+
+export async function action({ params }: LoaderFunctionArgs) {
+  if (params.id !== undefined) {
+    await deleteProduct(+params.id)
+    return redirect('/')
+  }
 }
 
 export function ProductDetails({ product }: ProductDetailsProps) {
@@ -26,7 +33,11 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <td className="p-3 text-lg text-white ">
           <div className="flex flex-column gap-4">
             <Link to={`products/${product.id}/edit`}><FaEdit className="text-orange-500"/></Link>
-            <button><FaDeleteLeft className="text-red-500"/></button>
+            <Form method="post" action={`products/${product.id}/delete`}>
+              <button type="submit">
+                <FaDeleteLeft className="text-red-500" />
+              </button>
+            </Form>
           </div>
         </td>
     </tr> 
