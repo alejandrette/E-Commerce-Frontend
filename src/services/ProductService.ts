@@ -72,3 +72,19 @@ export async function putProduct(data: addProductProps, id: Product['id']) {
     console.error(error)
   }
 }
+
+export async function updateAvailability(id: Product['id']) {
+  try {
+    const url = `${import.meta.env.VITE_URL_BACKEND}api/products/${id}`
+    const { data } = await axios.patch(url)    
+    const result = safeParse(ProductSchema, data.data)
+
+    if(result.success){
+      return result.output
+    } else {
+      throw new Error('Error get products...')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
